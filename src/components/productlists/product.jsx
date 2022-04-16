@@ -1,3 +1,4 @@
+import toast from 'react-hot-toast';
 import { useDispatch } from 'react-redux';
 import { add } from '../../store/slices/cartSlices';
 
@@ -18,6 +19,7 @@ const Product = ({
   const dispatch = useDispatch();
   const handleClick = product => {
     dispatch(add(product));
+    toast.success(`Successfully added ${product.title} to your cart!`);
   };
   return (
     <div className='p-4 ring-1 ring-gray-200'>

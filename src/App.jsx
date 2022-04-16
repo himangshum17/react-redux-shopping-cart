@@ -1,3 +1,4 @@
+import { Toaster } from 'react-hot-toast';
 import { Route, Routes } from 'react-router-dom';
 import { Navbar } from './components';
 import Cart from './pages/cart';
@@ -11,6 +12,7 @@ function App() {
         <Route path='/' element={<Home />} />
         <Route path='cart' element={<Cart />} />
       </Routes>
+      <Toaster />
     </>
   );
 }

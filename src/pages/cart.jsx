@@ -1,11 +1,13 @@
+import toast from 'react-hot-toast';
 import { useDispatch, useSelector } from 'react-redux';
 import { remove } from '../store/slices/cartSlices';
 
 const Cart = () => {
   const cartDatas = useSelector(state => state.cart);
   const dispatch = useDispatch();
-  const handleRemove = cartId => {
-    dispatch(remove(cartId));
+  const handleRemove = cartData => {
+    dispatch(remove(cartData.id));
+    toast.success(`Successfully removed ${cartData.title} from your cart!`);
   };
   const productPriceSum = cartDatas
     ?.reduce(
@@ -50,7 +52,7 @@ const Cart = () => {
                     <td className='px-3 py-4'>{cartData.price}</td>
                     <td className='px-3 py-4'>
                       <button
-                        onClick={() => handleRemove(cartData.id)}
+                        onClick={() => handleRemove(cartData)}
                         className='text-gray-500 hover:text-red-500'
                       >
                         <svg
