@@ -32,9 +32,11 @@ const Navbar = () => {
                     d='M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z'
                   />
                 </svg>
-                <span className='absolute -top-2 -right-3 grid h-5 w-5 place-content-center rounded-full bg-indigo-800 text-sm text-indigo-100 ring-1 ring-white'>
-                  {cartItems.length}
-                </span>
+                {cartItems.length === 0 ? null : (
+                  <span className='absolute -top-2 -right-3 grid h-5 w-5 place-content-center rounded-full bg-indigo-800 text-sm text-indigo-100 ring-1 ring-white'>
+                    {cartItems.length}
+                  </span>
+                )}
               </Link>
             </li>
           </ul>
