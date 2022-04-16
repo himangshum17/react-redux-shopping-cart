@@ -1,6 +1,8 @@
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 const Navbar = () => {
+  const cartItems = useSelector(state => state.cart);
   return (
     <header className='border-b border-gray-200 py-4'>
       <div className='container flex items-center justify-between'>
@@ -31,7 +33,7 @@ const Navbar = () => {
                   />
                 </svg>
                 <span className='absolute -top-2 -right-3 grid h-5 w-5 place-content-center rounded-full bg-indigo-800 text-sm text-indigo-100 ring-1 ring-white'>
-                  0
+                  {cartItems.length}
                 </span>
               </Link>
             </li>

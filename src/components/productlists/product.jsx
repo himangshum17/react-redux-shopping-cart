@@ -1,10 +1,24 @@
+import { useDispatch } from 'react-redux';
+import { add } from '../../store/slices/cartSlices';
+
 const Product = ({
   title,
   price,
   category,
   image,
+  id,
   rating: { rate, count },
 }) => {
+  const productCartDetails = {
+    id,
+    title,
+    price,
+    image,
+  };
+  const dispatch = useDispatch();
+  const handleClick = product => {
+    dispatch(add(product));
+  };
   return (
     <div className='p-4 ring-1 ring-gray-200'>
       <img src={image} alt={title} className='mx-auto h-40 object-contain' />
@@ -37,6 +51,7 @@ const Product = ({
       <button
         className='mt-4 w-full rounded-lg bg-indigo-700 px-6 py-4 text-center text-indigo-100 transition-all hover:bg-indigo-600'
         type='button'
+        onClick={() => handleClick(productCartDetails)}
       >
         Add to Cart
       </button>

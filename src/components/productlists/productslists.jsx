@@ -11,10 +11,20 @@ const Productslists = () => {
   useEffect(() => {
     fetchProductsData();
   }, []);
+  if (!products) {
+    return (
+      <div className='mt-8 flex items-center justify-center'>
+        <h2 className='text-lg font-medium text-indigo-700'>
+          Loading Products...
+        </h2>
+      </div>
+    );
+  }
   return (
-    <div className='mt-8 grid grid-cols-4 gap-4'>
-      {products &&
-        products.map(product => <Product key={product.id} {...product} />)}
+    <div className='mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4'>
+      {products.map(product => (
+        <Product key={product.id} {...product} />
+      ))}
     </div>
   );
 };
