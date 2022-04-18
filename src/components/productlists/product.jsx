@@ -1,5 +1,5 @@
 import toast from 'react-hot-toast';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { add } from '../../store/slices/cartSlices';
 
 const Product = ({
@@ -21,6 +21,8 @@ const Product = ({
     dispatch(add(product));
     toast.success(`Successfully added ${product.title} to your cart!`);
   };
+  const cartItems = useSelector(state => state.appState.cart);
+  const disabledBtn = !!cartItems.find(obj => obj.id === id);
   return (
     <div className='p-4 ring-1 ring-gray-200'>
       <img src={image} alt={title} className='mx-auto h-40 object-contain' />
@@ -30,15 +32,14 @@ const Product = ({
       <h3 className='h-14 text-lg line-clamp-2'>{title}</h3>
       <div className='mt-4 flex items-center justify-between'>
         <h4 className='text-xl font-bold text-indigo-700'>{price}</h4>
-        <div className=' inline-flex items-center rounded bg-orange-100 px-2 py-1 text-orange-600'>
+        <div className='inline-flex items-center rounded bg-orange-100 px-2 py-1 text-orange-600'>
           <svg
             xmlns='http://www.w3.org/2000/svg'
             className='h-4 w-4'
             fill='none'
             viewBox='0 0 24 24'
             stroke='currentColor'
-            strokeWidth={2}
-          >
+            strokeWidth={2}>
             <path
               strokeLinecap='round'
               strokeLinejoin='round'
@@ -51,11 +52,15 @@ const Product = ({
         </div>
       </div>
       <button
-        className='mt-4 w-full rounded-lg bg-indigo-700 px-6 py-4 text-center text-indigo-100 transition-all hover:bg-indigo-600'
+        className={`mt-4 w-full rounded-lg  px-6 py-4 text-center  transition-all  ${
+          disabledBtn
+            ? 'cursor-not-allowed bg-gray-200 text-gray-400'
+            : 'bg-indigo-700 text-indigo-100 hover:bg-indigo-600'
+        }`}
         type='button'
-        onClick={() => handleClick(productCartDetails)}
-      >
-        Add to Cart
+        disabled={disabledBtn}
+        onClick={() => handleClick(productCartDetails)}>
+        {disabledBtn ? 'Added to Cart' : 'Add to Cart'}
       </button>
     </div>
   );
