@@ -2,7 +2,7 @@ import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 const Navbar = () => {
-  const cartItems = useSelector(state => state.cart);
+  const cartItems = useSelector(state => state.appState.cart);
   return (
     <header className='border-b border-gray-200 py-4'>
       <div className='container flex items-center justify-between'>
@@ -24,8 +24,7 @@ const Navbar = () => {
                   fill='none'
                   viewBox='0 0 24 24'
                   stroke='currentColor'
-                  strokeWidth={2}
-                >
+                  strokeWidth={2}>
                   <path
                     strokeLinecap='round'
                     strokeLinejoin='round'

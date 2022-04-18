@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { remove } from '../store/slices/cartSlices';
 
 const Cart = () => {
-  const cartDatas = useSelector(state => state.cart);
+  const cartDatas = useSelector(state => state.appState.cart);
   const dispatch = useDispatch();
   const handleRemove = cartData => {
     dispatch(remove(cartData.id));
@@ -53,16 +53,14 @@ const Cart = () => {
                     <td className='px-3 py-4'>
                       <button
                         onClick={() => handleRemove(cartData)}
-                        className='text-gray-500 hover:text-red-500'
-                      >
+                        className='text-gray-500 hover:text-red-500'>
                         <svg
                           xmlns='http://www.w3.org/2000/svg'
                           className='h-6 w-6'
                           fill='none'
                           viewBox='0 0 24 24'
                           stroke='currentColor'
-                          strokeWidth={2}
-                        >
+                          strokeWidth={2}>
                           <path
                             strokeLinecap='round'
                             strokeLinejoin='round'
