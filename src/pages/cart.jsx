@@ -1,6 +1,7 @@
 import toast from 'react-hot-toast';
 import { useDispatch, useSelector } from 'react-redux';
-import { remove } from '../store/slices/cartSlices';
+import { Link } from 'react-router-dom';
+import { remove } from '../store/slices/cartSlice';
 
 const Cart = () => {
   const cartDatas = useSelector(state => state.appState.cart);
@@ -20,7 +21,16 @@ const Cart = () => {
       <div className='container'>
         <h2 className='text-xl font-medium'>Cart</h2>
         {cartDatas.length === 0 ? (
-          <h3 className='mt-2 text-sm text-gray-500'>Your Cart is empty</h3>
+          <>
+            <h3 className='mt-2 text-sm text-gray-500'>Your Cart is empty</h3>
+            <div className='grid place-content-start'>
+              <Link
+                to='/'
+                className='mt-4  w-full rounded-lg bg-indigo-700 px-6 py-4 text-center text-indigo-100 transition-all hover:bg-indigo-600'>
+                Back To Shopping
+              </Link>
+            </div>
+          </>
         ) : (
           <table className='mt-8 w-full table-auto'>
             <thead className='border-b border-gray-200 bg-white text-left'>

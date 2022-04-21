@@ -1,23 +1,20 @@
 import { createSlice } from '@reduxjs/toolkit';
-const initialState = {
-  cart: [],
-};
+
 export const cartSlice = createSlice({
   name: 'cart',
-  initialState,
+  initialState: [],
   reducers: {
     add: (state, action) => {
       const { id } = action.payload;
-      const duplicateProduct = state.cart.find(obj => obj.id === id);
+      const duplicateProduct = state.find(obj => obj.id === id);
       if (duplicateProduct) {
-        return state.cart;
+        return state;
       } else {
-        state.cart.push(action.payload);
+        state.push(action.payload);
       }
     },
     remove: (state, action) => {
-      const updatedCart = state.cart.filter(cart => cart.id !== action.payload);
-      state.cart = updatedCart;
+      return state.filter(cart => cart.id !== action.payload);
     },
   },
 });

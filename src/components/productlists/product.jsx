@@ -1,6 +1,6 @@
 import toast from 'react-hot-toast';
 import { useDispatch, useSelector } from 'react-redux';
-import { add } from '../../store/slices/cartSlices';
+import { add } from '../../store/slices/cartSlice';
 
 const Product = ({
   title,
@@ -52,7 +52,7 @@ const Product = ({
         </div>
       </div>
       <button
-        className={`mt-4 w-full rounded-lg  px-6 py-4 text-center  transition-all  ${
+        className={`mt-4 w-full rounded-lg px-6 py-4 text-center transition-all  ${
           disabledBtn
             ? 'cursor-not-allowed bg-gray-200 text-gray-400'
             : 'bg-indigo-700 text-indigo-100 hover:bg-indigo-600'
