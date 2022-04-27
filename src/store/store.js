@@ -11,6 +11,7 @@ import {
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import rootReducer from './rootreducer';
+import productReducer from './slices/productSlice';
 
 const persistConfig = {
   key: 'root',
@@ -21,7 +22,7 @@ const persistConfig = {
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 const store = configureStore({
-  reducer: { appState: persistedReducer },
+  reducer: { appState: persistedReducer, product: productReducer },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({
       serializableCheck: {
